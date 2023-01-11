@@ -29,6 +29,9 @@ AMainCharacter::AMainCharacter()
 	MeshComponent->bCastDynamicShadow = false;
 	MeshComponent->CastShadow = false;
 	MeshComponent->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
+
+	/* Player Stats */
+
 }
 
 // Called when the game starts or when spawned
@@ -95,5 +98,20 @@ void AMainCharacter::Look(const FInputActionValue& Value)
 		// add yaw and pitch input to controller
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
+	}
+}
+
+void AMainCharacter::AddScraps(int32 ScrapsAmount)
+{
+	CurrentScraps += ScrapsAmount;
+}
+
+void AMainCharacter::RemoveScraps(int32 ScrapsAmount)
+{
+	CurrentScraps -= ScrapsAmount;
+	
+	if (CurrentScraps <= 0)
+	{
+		CurrentScraps = 0;
 	}
 }

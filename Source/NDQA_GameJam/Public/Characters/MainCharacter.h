@@ -42,35 +42,55 @@ protected:
 	// Called for looking input
 	void Look(const FInputActionValue& Value);
 
+	/* Scrap System */
+	UFUNCTION(BlueprintCallable)
+	void AddScraps(int32 ScrapsAmount);
+
+	UFUNCTION(BlueprintCallable)
+	void RemoveScraps(int32 ScrapsAmount);
+
+
 private:
 	/* Base Components */
 	// Character mesh. First person view(Just arms. Seen only by self).
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Main | Base", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Main | Components", meta = (AllowPrivateAccess = "true"))
 	USkeletalMeshComponent* MeshComponent;
 
 	// First person camera
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Main | Base", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Main | Components", meta = (AllowPrivateAccess = "true"))
 		UCameraComponent* CameraComponent;
 
 	/* Input */
 	// Input mapping context for enhanced input.
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Main | Base | Input", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Main | Input", meta = (AllowPrivateAccess = "true"))
 	UInputMappingContext* DefaulMappingContext;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Main | Base | Input", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Main | Input", meta = (AllowPrivateAccess = "true"))
 	UInputAction* MovementAction;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Main | Base | Input", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Main | Input", meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Main | Base | Input", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Main | Input", meta = (AllowPrivateAccess = "true"))
 	UInputAction* JumpAction;
+
+	/* Player Stats */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Main | Stats", meta = (AllowPrivateAccess = "true"))
+	int32 MaxScraps;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Main | Stats", meta = (AllowPrivateAccess = "true"))
+	int32 CurrentScraps;
 
 public:	
 	// Returns MainCharacter mesh.
 	USkeletalMeshComponent* GetMesh() const { return MeshComponent; }
 
-	//Returns our first person camera
+	// Returns our first person camera
 	UCameraComponent* GetCameraComponent() const { return CameraComponent; }
 
+	// Returns Player Current Health
+	int32 GetCurrentScraps() const { return CurrentScraps; }
+
+	// Returns Player MaxHealth
+	int32 GetMaxScraps() const { return MaxScraps; }
 };
