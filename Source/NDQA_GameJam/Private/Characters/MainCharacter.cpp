@@ -47,6 +47,14 @@ void AMainCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaulMappingContext, 0);
 		}
 	}
+
+	// Attaching BP_Weapon to RHand
+	FActorSpawnParameters SpawnParams;
+	FVector WeaponLocation = GetMesh()->GetSocketLocation(FName("Weapon_r"));
+	AActor* Weapon = Cast<AActor>(WeaponBP);
+
+	AActor* WeaponRef = GetWorld()->SpawnActor<AActor>(WeaponBP, WeaponLocation, FRotator(0.f, 0.f, 0.f), SpawnParams);
+	WeaponRef->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), FName("Weapon_r"));
 }
 
 // Called every frame

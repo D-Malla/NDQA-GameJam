@@ -31,6 +31,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Main | Weapon")
+	TSubclassOf<AActor> WeaponBP;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -58,7 +61,7 @@ private:
 
 	// First person camera
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Main | Components", meta = (AllowPrivateAccess = "true"))
-		UCameraComponent* CameraComponent;
+	UCameraComponent* CameraComponent;
 
 	/* Input */
 	// Input mapping context for enhanced input.
